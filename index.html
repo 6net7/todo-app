@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Current</title>
+  <link rel="stylesheet" href=".\assets\css\styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <p class="eyebrow">Daily Planner</p>
+      <h1>Build a calmer list.</h1>
+      <p class="hero-copy">
+        Capture tasks, finish what matters, and keep the clutter out of the way.
+      </p>
+      <form class="task-form" id="task-form">
+        <div class="task-form-grid">
+          <label class="sr-only" for="task-input">New task</label>
+          <input id="task-input" name="task" type="text" maxlength="120" placeholder="Add a task" autocomplete="off" required>
+
+          <label class="sr-only" for="task-status">Task status</label>
+          <select id="task-status" name="status">
+            <option value="pending">Pending</option>
+            <option value="in progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+
+          <label class="sr-only" for="task-start">Start time</label>
+          <input id="task-start" name="startTime" type="datetime-local">
+
+          <label class="sr-only" for="task-end">End time</label>
+          <input id="task-end" name="endTime" type="datetime-local">
+        </div>
+        <p class="helper-text">Set a time slot to automatically move a task from pending to in progress to completed.</p>
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    <section class="board">
+      <header class="board-header">
+        <div>
+          <p class="board-label">Overview</p>
+          <h2>Your tasks</h2>
+        </div>
+        <div class="stats" id="stats">
+          <span>0 total</span>
+          <span>0 done</span>
+        </div>
+      </header>
+
+      <div class="filters" role="tablist" aria-label="Task filters">
+        <button class="filter is-active" data-filter="all" type="button">All</button>
+        <button class="filter" data-filter="pending" type="button">Pending</button>
+        <button class="filter" data-filter="in progress" type="button">In Progress</button>
+        <button class="filter" data-filter="completed" type="button">Completed</button>
+      </div>
+
+      <ul class="task-list" id="task-list" aria-live="polite"></ul>
+
+      <template id="task-template">
+        <li class="task-item">
+          <div class="task-main">
+            <div class="task-copy">
+              <div class="task-heading">
+                <span class="task-text"></span>
+                <span class="task-status-badge"></span>
+              </div>
+              <p class="task-schedule"></p>
+            </div>
+          </div>
+          <div class="task-controls">
+            <span class="sr-only">Task status</span>
+            <select class="task-status-select">
+              <option value="pending">Pending</option>
+              <option value="in progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <div class="task-actions">
+            <button class="ghost-button task-subtask" type="button">Add Subtask</button>
+            <button class="ghost-button task-edit" type="button">Edit</button>
+            <button class="ghost-button task-delete" type="button">Delete</button>
+          </div>
+          <ul class="subtask-list"></ul>
+        </li>
+      </template>
+    </section>
+  </main>
+
+  <script src=".\assets\js\app.js"></script>
+</body>
+</html>
